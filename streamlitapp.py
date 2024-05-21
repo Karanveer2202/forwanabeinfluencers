@@ -3,9 +3,13 @@ import pandas as pd
 import nltk
 from nltk.sentiment import SentimentIntensityAnalyzer
 import plotly.express as px
+import os
 
-
-nltk.download('vader_lexicon')
+nltk_data_path = os.path.join(os.path.expanduser('~'), 'nltk_data')
+if not os.path.exists(nltk_data_path):
+    nltk.download('vader_lexicon', download_dir=nltk_data_path)
+else:
+    nltk.data.path.append(nltk_data_path)
 
 
 data = pd.read_csv('tweets.csv')  
